@@ -1,0 +1,35 @@
+@import "../../styles/theme/color";
+.header-content{
+    .box-adress{
+        padding: 10px;
+        background-color: var(--purple-light);
+        color: var(--purple-dark);
+        border-radius: 6px;
+    }
+
+    .btn-cart{
+        padding: 8px;
+        height: 100%;
+        max-width: none;
+        max-height: none;
+        border-radius: 6px;
+        background-color: var(--yellow-light);
+        color: var(--yellow-dark);
+        position: relative;
+        cursor: pointer;
+
+        .circle-counter{
+            width: 20px;
+            height: 20px;
+            color: var(--white);
+            background-color: var(--yellow-dark);
+            border-radius: 50%;
+            position: absolute;
+            top: -12px;
+            right: -6px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+    }
+}
