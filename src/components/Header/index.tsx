@@ -1,6 +1,6 @@
 import { Box, Button, Flex, Text } from '@radix-ui/themes'
 import { MapPin, ShoppingCart } from 'phosphor-react'
-import Logo from '../../assets/Logo.png'
+import Logo from '../../assets/Logo.svg'
 import './index.scss'
 
 export function Header() {

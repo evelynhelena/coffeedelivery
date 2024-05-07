@@ -1,0 +1,80 @@
+.box-product{
+    margin-bottom: 157px;
+    background-color: var(--gray-200);
+    border-top-left-radius: 6px;
+    border-top-right-radius: 36px;
+    border-bottom-left-radius: 36px;
+    border-bottom-right-radius: 6px;
+
+    
+    .content-infos{
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      text-align: center;
+
+      .label-text-info{
+        color: var(--gray-600);
+      }
+
+      .label-price{
+        span{
+          color: var(--gray-700);
+        }
+      }
+
+      .btn-more-less{
+        background-color: var(--gray-400);
+        padding: 8.5px 8px;
+        border-radius: 6px;
+        font-size: var(--s);
+        width: 90px;
+
+        .color-icon{
+          color: var(--purple);
+          cursor: pointer;
+
+          &:hover{
+            color: var(--purple-dark)
+          }
+        }
+
+        .disabled{
+            color: var(--purple);
+            cursor: not-allowed;
+            &:hover{
+                color: var(--purple)
+            }
+        }
+
+      }
+
+    }
+
+    position: relative;
+
+    .label-coffee-type{
+      display: flex;
+      justify-content: center;
+      margin-top: 89px;
+      span{
+        background-color: var(--yellow-light);
+        color: var(--yellow-dark);
+        font-weight: bold;
+        padding: 4px 8px;
+        border-radius: 100px;
+      }
+    }
+
+    .coffee-name{
+      color: var(--gray-700);
+    }
+
+     img{
+      position: absolute;
+      top: -28px;
+      left: 25%;
+   
+    } 
+
+  }

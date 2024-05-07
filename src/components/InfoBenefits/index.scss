@@ -1,0 +1,31 @@
+@import "../../styles/theme/color";
+
+.info-benefits-component{
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    .yellow-dark{
+        background-color: var(--yellow-dark)
+    }
+
+    .yellow{
+        background-color: var(--yellow)
+    }
+
+    .gray-700{
+        background-color: var(--gray-700)
+    }
+
+    .purple{
+        background-color: var(--purple)
+    }
+
+    .box-icon{
+        padding: 8px;
+        color: var(--white);
+        border-radius: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+}
