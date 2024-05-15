@@ -2,29 +2,44 @@ import { Box, Flex, Button, Text } from '@radix-ui/themes'
 import { Minus, Plus, ShoppingCart } from 'phosphor-react'
 import './index.scss'
 import { useState } from 'react'
+import { ProductsTypesPropos } from '../../types/productService'
 
 interface CardProductProps {
   image: string
+  types: ProductsTypesPropos[]
+  name: string
+  description: string
+  price: number
 }
 
-export function CardProduct({ image }: CardProductProps) {
+export function CardProduct({
+  image,
+  name,
+  description,
+  types,
+  price,
+}: CardProductProps) {
   const [countProduct, setCountProduct] = useState<number>(0)
 
   return (
     <Box className="box-product">
       <img src={image} alt="Xicará de café tradicional" />
       <Box p="5" className="content-infos">
-        <Box className="label-coffee-type">
-          <Text size="1">Tradicional</Text>
-        </Box>
+        <Flex className="label-coffee-type" gap="2">
+          {types.map((t, index) => (
+            <Text size="1" key={index}>
+              {t.name.toUpperCase()}
+            </Text>
+          ))}
+        </Flex>
         <Box>
           <Text className="baloo-2-extra-bold coffee-name" size="4">
-            Expresso Tradicional
+            {name}
           </Text>
         </Box>
         <Box>
           <Text className="label-text-info" size="1">
-            O tradicional café feito com água quente e grãos moídos
+            {description}
           </Text>
         </Box>
 
@@ -32,7 +47,7 @@ export function CardProduct({ image }: CardProductProps) {
           <Box className="label-price">
             <Text size="1">R$</Text>{' '}
             <Text className="baloo-2-extra-bold" size="6">
-              9,90
+              {price}
             </Text>
           </Box>
 

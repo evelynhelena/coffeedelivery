@@ -5,7 +5,25 @@ import ImageCoffee01 from '../../assets/01-Image-coffee.svg'
 import { InfoBenefits } from '../../components/InfoBenefits'
 import { Coffee, Package, ShoppingCart, Timer } from 'phosphor-react'
 import { CardProduct } from '../../components/CardProduct'
+import { useEffect, useState } from 'react'
+import { productService } from '../../services/product'
+import { ProductResponseProps } from '../../types/productService'
 export function Home() {
+  const [listProducts, setListProducts] = useState<ProductResponseProps[]>([])
+
+  const fetchProducts = async () => {
+    try {
+      const data = await productService.getPrducts()
+      setListProducts(data)
+    } catch {
+      console.log('ERRO')
+    }
+  }
+
+  useEffect(() => {
+    fetchProducts()
+  }, [])
+
   return (
     <Box className="home-contet" mt="9">
       <Box className="bg-image">
@@ -55,10 +73,18 @@ export function Home() {
         </Text>
 
         <Grid columns="4" gap="3" rows="repeat(4)" width="auto" mt="9">
-          <CardProduct image={ImageCoffee01} />
-          <CardProduct image={ImageCoffee01} />
-          <CardProduct image={ImageCoffee01} />
-          <CardProduct image={ImageCoffee01} />
+          {listProducts &&
+            listProducts.length > 0 &&
+            listProducts.map((p) => (
+              <CardProduct
+                types={p.types}
+                name={p.name}
+                description={p.description}
+                price={p.price}
+                key={p.id}
+                image={ImageCoffee01}
+              />
+            ))}
         </Grid>
       </Box>
     </Box>
