@@ -2,6 +2,7 @@
     "products": [
         {
             "id":1,
+            "imageName": "02-Image-coffee",
             "types": [
                 {
                     "name": "Tradicional"
@@ -13,6 +14,7 @@
         },
         {
             "id":2,
+            "imageName": "01-Image-coffee",
             "types": [
                 {
                     "name": "Tradicional"
@@ -24,6 +26,7 @@
         },
         {
             "id":3,
+            "imageName": "02-Image-coffee",
             "types": [
                 {
                     "name": "Tradicional"
@@ -35,6 +38,7 @@
         },
         {
             "id":4,
+            "imageName": "02-Image-coffee",
             "types": [
                 {
                     "name": "Tradicional"
@@ -49,6 +53,7 @@
         },
         {
             "id":5,
+            "imageName": "02-Image-coffee",
             "types": [
                 {
                     "name": "Tradicional"
@@ -63,6 +68,7 @@
         },
         {
             "id":6,
+            "imageName": "02-Image-coffee",
             "types": [
                 {
                     "name": "Tradicional"
@@ -77,6 +83,7 @@
         },
         {
             "id":7,
+            "imageName": "02-Image-coffee",
             "types": [
                 {
                     "name": "Tradicional"
@@ -91,6 +98,7 @@
         },
         {
             "id":8,
+            "imageName": "02-Image-coffee",
             "types": [
                 {
                     "name": "Tradicional"
@@ -105,6 +113,7 @@
         },
         {
             "id":9,
+            "imageName": "02-Image-coffee",
             "types": [
                 {
                     "name": "Tradicional"
@@ -119,6 +128,7 @@
         },
         {
             "id":10,
+            "imageName": "02-Image-coffee",
             "types": [
                 {
                     "name": "especial"
@@ -133,6 +143,7 @@
         },
         {
             "id":11,
+            "imageName": "02-Image-coffee",
             "types": [
                 {
                     "name": "especial"
@@ -150,6 +161,7 @@
         },
         {
             "id":12,
+            "imageName": "02-Image-coffee",
             "types": [
                 {
                     "name": "especial"
@@ -161,6 +173,7 @@
         },
         {
             "id":13,
+            "imageName": "02-Image-coffee",
             "types": [
                 {
                     "name": "especial"
@@ -172,6 +185,7 @@
         },
         {
             "id":14,
+            "imageName": "02-Image-coffee",
             "types": [
                 {
                     "name": "especial"

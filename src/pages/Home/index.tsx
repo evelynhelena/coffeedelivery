@@ -1,7 +1,6 @@
 import { Box, Flex, Grid, Text } from '@radix-ui/themes'
 import './index.scss'
 import ImageCoffee from '../../assets/Imagem-coffee.svg'
-import ImageCoffee01 from '../../assets/01-Image-coffee.svg'
 import { InfoBenefits } from '../../components/InfoBenefits'
 import { Coffee, Package, ShoppingCart, Timer } from 'phosphor-react'
 import { CardProduct } from '../../components/CardProduct'
@@ -82,7 +81,7 @@ export function Home() {
                 description={p.description}
                 price={p.price}
                 key={p.id}
-                image={ImageCoffee01}
+                imageName={p.imageName}
               />
             ))}
         </Grid>

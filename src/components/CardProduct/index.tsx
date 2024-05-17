@@ -3,9 +3,17 @@ import { Minus, Plus, ShoppingCart } from 'phosphor-react'
 import './index.scss'
 import { useState } from 'react'
 import { ProductsTypesPropos } from '../../types/productService'
+import { ImageCoffee01 } from '../imgs/img01'
+import { ImageCoffee02 } from '../imgs/img02'
 
+const imagsList = {
+  '02-Image-coffee': <ImageCoffee02 />,
+  '01-Image-coffee': <ImageCoffee01 />,
+}
+
+export type ImagsListProps = keyof typeof imagsList
 interface CardProductProps {
-  image: string
+  imageName: ImagsListProps
   types: ProductsTypesPropos[]
   name: string
   description: string
@@ -13,7 +21,7 @@ interface CardProductProps {
 }
 
 export function CardProduct({
-  image,
+  imageName,
   name,
   description,
   types,
@@ -21,9 +29,10 @@ export function CardProduct({
 }: CardProductProps) {
   const [countProduct, setCountProduct] = useState<number>(0)
 
+  console.log(imageName)
   return (
     <Box className="box-product">
-      <img src={image} alt="Xicará de café tradicional" />
+      <>{imagsList[imageName]}</>
       <Box p="5" className="content-infos">
         <Flex className="label-coffee-type" gap="2">
           {types.map((t, index) => (
