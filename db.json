@@ -2,7 +2,7 @@
     "products": [
         {
             "id":1,
-            "imageName": "02-Image-coffee",
+            "imageName": "01-Image-coffee",
             "types": [
                 {
                     "name": "Tradicional"
@@ -14,7 +14,7 @@
         },
         {
             "id":2,
-            "imageName": "01-Image-coffee",
+            "imageName": "02-Image-coffee",
             "types": [
                 {
                     "name": "Tradicional"
@@ -26,7 +26,7 @@
         },
         {
             "id":3,
-            "imageName": "02-Image-coffee",
+            "imageName": "03-Image-coffee",
             "types": [
                 {
                     "name": "Tradicional"
@@ -38,7 +38,7 @@
         },
         {
             "id":4,
-            "imageName": "02-Image-coffee",
+            "imageName": "04-Image-coffee",
             "types": [
                 {
                     "name": "Tradicional"
@@ -53,7 +53,7 @@
         },
         {
             "id":5,
-            "imageName": "02-Image-coffee",
+            "imageName": "05-Image-coffee",
             "types": [
                 {
                     "name": "Tradicional"
@@ -68,7 +68,7 @@
         },
         {
             "id":6,
-            "imageName": "02-Image-coffee",
+            "imageName": "06-Image-coffee",
             "types": [
                 {
                     "name": "Tradicional"
@@ -83,7 +83,7 @@
         },
         {
             "id":7,
-            "imageName": "02-Image-coffee",
+            "imageName": "07-Image-coffee",
             "types": [
                 {
                     "name": "Tradicional"
@@ -98,7 +98,7 @@
         },
         {
             "id":8,
-            "imageName": "02-Image-coffee",
+            "imageName": "08-Image-coffee",
             "types": [
                 {
                     "name": "Tradicional"
@@ -113,7 +113,7 @@
         },
         {
             "id":9,
-            "imageName": "02-Image-coffee",
+            "imageName": "09-Image-coffee",
             "types": [
                 {
                     "name": "Tradicional"
@@ -128,7 +128,7 @@
         },
         {
             "id":10,
-            "imageName": "02-Image-coffee",
+            "imageName": "10-Image-coffee",
             "types": [
                 {
                     "name": "especial"
@@ -143,7 +143,7 @@
         },
         {
             "id":11,
-            "imageName": "02-Image-coffee",
+            "imageName": "11-Image-coffee",
             "types": [
                 {
                     "name": "especial"
@@ -161,7 +161,7 @@
         },
         {
             "id":12,
-            "imageName": "02-Image-coffee",
+            "imageName": "12-Image-coffee",
             "types": [
                 {
                     "name": "especial"
@@ -173,7 +173,7 @@
         },
         {
             "id":13,
-            "imageName": "02-Image-coffee",
+            "imageName": "13-Image-coffee",
             "types": [
                 {
                     "name": "especial"
@@ -185,7 +185,7 @@
         },
         {
             "id":14,
-            "imageName": "02-Image-coffee",
+            "imageName": "14-Image-coffee",
             "types": [
                 {
                     "name": "especial"
