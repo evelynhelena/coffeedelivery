@@ -74,16 +74,7 @@ export function Home() {
         <Grid columns="4" gap="3" rows="repeat(4)" width="auto" mt="9">
           {listProducts &&
             listProducts.length > 0 &&
-            listProducts.map((p) => (
-              <CardProduct
-                types={p.types}
-                name={p.name}
-                description={p.description}
-                price={p.price}
-                key={p.id}
-                imageName={p.imageName}
-              />
-            ))}
+            listProducts.map((p) => <CardProduct key={p.id} product={p} />)}
         </Grid>
       </Box>
     </Box>

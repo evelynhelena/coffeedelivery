@@ -6,4 +6,8 @@ export const productService = {
     const { data }: ProductResponse = await api.get('/products')
     return data
   },
+  getPrductById: async function (id: number): Promise<ProductResponseProps[]> {
+    const { data }: ProductResponse = await api.get(`/products/${id}`)
+    return data
+  },
 }
