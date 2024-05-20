@@ -17,6 +17,7 @@ export function ShoppingCartProvider({ children }: ShoppingCartProps) {
   const getProduct = async (id: number, count: number) => {
     const data = await productService.getPrductById(id)
 
+    console.log('data')
     console.log(data)
     console.log(count)
   }
