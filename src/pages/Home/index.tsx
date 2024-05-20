@@ -2,14 +2,22 @@ import { Box, Flex, Grid, Text } from '@radix-ui/themes'
 import './index.scss'
 import ImageCoffee from '../../assets/Imagem-coffee.svg'
 import { InfoBenefits } from '../../components/InfoBenefits'
-import { Coffee, Package, ShoppingCart, Timer } from 'phosphor-react'
+import {
+  CheckCircle,
+  Coffee,
+  Package,
+  ShoppingCart,
+  Timer,
+} from 'phosphor-react'
 import { CardProduct } from '../../components/CardProduct'
 import { useEffect, useState } from 'react'
 import { productService } from '../../services/product'
 import { ProductResponseProps } from '../../types/productService'
+import { Alert } from '../../components/Alert'
+import { useShoppingCart } from '../../hooks/useShoppingCart'
 export function Home() {
+  const { open, status } = useShoppingCart()
   const [listProducts, setListProducts] = useState<ProductResponseProps[]>([])
-
   const fetchProducts = async () => {
     try {
       const data = await productService.getPrducts()
@@ -25,6 +33,17 @@ export function Home() {
 
   return (
     <Box className="home-contet" mt="9">
+      {open && (
+        <Alert
+          icon={<CheckCircle size={20} />}
+          title={
+            status === 'ERROR'
+              ? 'Erro ao adicionar o produto'
+              : 'Produto adicionada com sucesso'
+          }
+          type={status === 'ERROR' ? 'error' : 'sucess'}
+        />
+      )}
       <Box className="bg-image">
         <Flex className="mw-1120" justify="between" align="center" gap="9">
           <Box>

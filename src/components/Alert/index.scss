@@ -1,0 +1,40 @@
+@import "../../styles/theme/color";
+
+.alert{
+    position: fixed;
+    top: 84px;
+    right: 10px;
+    z-index: 1;
+    color: var(--white) !important;
+    padding: 0 !important;
+    border-top-left-radius: 6px !important;
+    border-top-right-radius: 0 !important;
+    border-bottom-right-radius: 0 !important;
+    border-bottom-left-radius: 0 !important;
+
+    &.sucess{
+        background-color: var(--green-300);
+        .progress-bar{
+            div{
+                background-color: var(--green-200);
+            }
+        }
+    }
+    &.error{
+        background-color: var(--red-500);
+        .progress-bar{
+            div{
+                background-color: var(--red-300);
+            }
+        }
+    }
+
+    .icon-close{
+        cursor: pointer;
+        transition: 0.2s;
+        &:hover{
+            transform: scale(1.2);
+        }
+    }
+
+  }

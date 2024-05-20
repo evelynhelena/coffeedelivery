@@ -1,4 +1,4 @@
-import { ReactNode, createContext, useContext } from 'react'
+import { ReactNode, createContext, useContext, useState } from 'react'
 import { productService } from '../services/product'
 
 interface ShoppingCartProps {
@@ -7,6 +7,9 @@ interface ShoppingCartProps {
 
 interface ShoppingCartData {
   getProduct: (id: number, count: number) => void
+  status: string
+  open: boolean
+  handleChangeStatus: () => void
 }
 
 export const ShoppingCartContext = createContext<ShoppingCartData>(
@@ -14,16 +17,37 @@ export const ShoppingCartContext = createContext<ShoppingCartData>(
 )
 
 export function ShoppingCartProvider({ children }: ShoppingCartProps) {
-  const getProduct = async (id: number, count: number) => {
-    const data = await productService.getPrductById(id)
+  const [status, setStatus] = useState<string>('')
+  const [open, setOpen] = useState<boolean>(false)
 
-    console.log('data')
-    console.log(data)
-    console.log(count)
+  const handleChangeStatus = () => {
+    setOpen(false)
+  }
+
+  const getProduct = async (id: number, count: number) => {
+    try {
+      const data = await productService.getPrductById(id)
+      console.log(data)
+      console.log(count)
+      setOpen(true)
+      setTimeout(() => {
+        setOpen(false)
+      }, 1000)
+
+      setStatus('SUCESS')
+    } catch {
+      setOpen(true)
+      setTimeout(() => {
+        setOpen(false)
+      }, 1000)
+      setStatus('ERROR')
+    }
   }
 
   return (
-    <ShoppingCartContext.Provider value={{ getProduct }}>
+    <ShoppingCartContext.Provider
+      value={{ getProduct, status, open, handleChangeStatus }}
+    >
       {children}
     </ShoppingCartContext.Provider>
   )
