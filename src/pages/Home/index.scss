@@ -1,6 +1,7 @@
 @import "../../styles/theme/fonts";
 @import "../../styles/theme/color";
 .home-contet{
+  position: relative;
   .bg-image{
     background-image: url("../../assets/Background.png");
     background-size: contain;
@@ -9,7 +10,6 @@
     font-size: var(--xxxl);
     color: var(--black);
     line-height: 130%;
-    text-shadow: 0 7px 7px rgba(0, 0, 0, 0.25);
   }
   .mt-120{
     margin-top:120px;
@@ -17,22 +17,5 @@
   .color-white {
     color: var(--white);
   }
-
-.btn-cart{
-  padding: 8px;
-  height: 100%;
-  max-width: none;
-  max-height: none;
-  border-radius: 6px;
-  background-color: var(--purple-dark );
-  color: var(--white);
-  cursor: pointer;
-
-  &:hover{
-    background-color: var(--purple);
-  }
-
-}
-
 
 }

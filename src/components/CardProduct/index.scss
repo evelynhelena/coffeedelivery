@@ -1,5 +1,5 @@
 .box-product{
-    margin-bottom: 157px;
+    margin-bottom: 100px;
     background-color: var(--gray-200);
     border-top-left-radius: 6px;
     border-top-right-radius: 36px;
@@ -77,4 +77,29 @@
    
     } 
 
+    .btn-cart{
+      padding: 8px;
+      height: 100%;
+      max-width: none;
+      max-height: none;
+      border-radius: 6px;
+      background-color: var(--purple-dark );
+      color: var(--white);
+      cursor: pointer;
+    
+      &:hover{
+        background-color: var(--purple);
+      }
+
+      &.disabled{
+        cursor: not-allowed;
+        color: var(--gray-600);
+        background-color: var(--gray-500);
+        &:hover{
+          color: var(--gray-600);
+          background-color: var(--gray-500);
+      }
+    }
   }
+  
+}

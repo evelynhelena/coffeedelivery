@@ -16,3 +16,6 @@ export interface ProductResponseProps {
 export interface ProductResponse {
   data: ProductResponseProps[]
 }
+export interface ProductByIdResponse {
+  data: ProductResponseProps
+}
