@@ -10,7 +10,6 @@ interface AlertProps {
   type: 'sucess' | 'error'
 }
 
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
 export const Alert = ({ icon, title, type }: AlertProps) => {
   const { handleChangeStatus } = useShoppingCart()
   return (

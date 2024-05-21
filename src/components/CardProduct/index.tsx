@@ -18,6 +18,7 @@ import ImageCoffee12 from '../../assets/12-Image-coffee.svg'
 import ImageCoffee13 from '../../assets/13-Image-coffee.svg'
 import ImageCoffee14 from '../../assets/14-Image-coffee.svg'
 import { useShoppingCart } from '../../hooks/useShoppingCart'
+import { currencyFormat } from '../../utils/format'
 
 const imagsList = {
   '01-Image-coffee': ImageCoffee01,
@@ -72,7 +73,7 @@ export function CardProduct({ product }: CardProductProps) {
           <Box className="label-price">
             <Text size="1">R$</Text>{' '}
             <Text className="baloo-2-extra-bold" size="6">
-              {product.price}
+              {currencyFormat(product.price)}
             </Text>
           </Box>
 

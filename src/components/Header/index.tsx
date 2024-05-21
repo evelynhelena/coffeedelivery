@@ -2,8 +2,17 @@ import { Box, Button, Flex, Text } from '@radix-ui/themes'
 import { MapPin, ShoppingCart } from 'phosphor-react'
 import Logo from '../../assets/Logo.svg'
 import './index.scss'
+import { useShoppingCart } from '../../hooks/useShoppingCart'
 
 export function Header() {
+  const { shoppingCartData } = useShoppingCart()
+  let countProduct = 0
+  const countProductFunction = () => {
+    shoppingCartData.forEach((el) => {
+      countProduct += el.count
+    })
+    return countProduct
+  }
   return (
     <Box pt="6" className="header-content mw-1120">
       <Flex justify="between">
@@ -20,9 +29,11 @@ export function Header() {
             </Box>
             <Button className="btn-cart">
               <ShoppingCart size={22} weight="fill" />
-              <Box className="circle-counter">
-                <Text size="1">3</Text>
-              </Box>
+              {shoppingCartData.length > 0 && (
+                <Box className="circle-counter">
+                  <Text size="1">{countProductFunction()}</Text>
+                </Box>
+              )}
             </Button>
           </Flex>
         </Box>

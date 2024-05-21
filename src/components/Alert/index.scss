@@ -21,10 +21,10 @@
         }
     }
     &.error{
-        background-color: var(--red-500);
+        background-color: var(--red-300);
         .progress-bar{
             div{
-                background-color: var(--red-300);
+                background-color: var(--red-200);
             }
         }
     }
