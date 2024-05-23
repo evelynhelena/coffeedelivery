@@ -3,9 +3,11 @@ import { MapPin, ShoppingCart } from 'phosphor-react'
 import Logo from '../../assets/Logo.svg'
 import './index.scss'
 import { useShoppingCart } from '../../hooks/useShoppingCart'
+import { useNavigate } from 'react-router-dom'
 
 export function Header() {
   const { shoppingCartData } = useShoppingCart()
+  const navigate = useNavigate()
   let countProduct = 0
   const countProductFunction = () => {
     shoppingCartData.forEach((el) => {
@@ -27,7 +29,7 @@ export function Header() {
                 <Text size="2">Porto Alegre, RS</Text>
               </Flex>
             </Box>
-            <Button className="btn-cart">
+            <Button className="btn-cart" onClick={() => navigate('/shopping')}>
               <ShoppingCart size={22} weight="fill" />
               {shoppingCartData.length > 0 && (
                 <Box className="circle-counter">

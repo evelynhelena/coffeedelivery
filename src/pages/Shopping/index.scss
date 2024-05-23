@@ -1,0 +1,31 @@
+@import "../../styles/theme/color";
+
+.content-shopping{
+    margin-top:40px;
+
+    .subtitle{
+        color: var(--gray-700);
+    }
+
+    .box-adress{
+        background-color: var(--gray-200);
+        padding: 40px;
+        border-radius: 6px;
+
+        .box-textField{
+            margin-top:32px;
+            .big-text-field{
+                width:80%
+            }
+            .smalltext-field{
+                width:20%
+            }
+
+            .text-field{
+                background-color: var(--gray-300);
+                border-color: var(--gray-400);
+            }
+        }
+        
+    }
+}
