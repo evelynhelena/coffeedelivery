@@ -1,4 +1,4 @@
-import { ImagsListProps } from '../components/CardProduct'
+import { ImagsListProps } from '../utils/imageList'
 
 export interface ProductsTypesPropos {
   name: string
