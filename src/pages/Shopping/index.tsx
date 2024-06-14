@@ -1,4 +1,4 @@
-import { Box, Flex, Text, TextField } from '@radix-ui/themes'
+import { Box, Button, Flex, Text, TextField } from '@radix-ui/themes'
 import { Header } from '../../components/Header'
 import './index.scss'
 import {
@@ -10,6 +10,7 @@ import {
 } from 'phosphor-react'
 import { useShoppingCart } from '../../hooks/useShoppingCart'
 import { useState } from 'react'
+import { CardProductSelected } from '../../components/CardProductSelected'
 
 export function Shopping() {
   const [paymentTypeSelect, setPaymentTypeSelect] = useState<
@@ -161,9 +162,48 @@ export function Shopping() {
             <Text className="baloo-2-extra-bold subtitle" size="4">
               Cafés selecionados
             </Text>
-            <Box mt="5">
-              <h1>teste</h1>
-            </Box>
+            <Flex
+              mt="5"
+              className="box-products-selected"
+              direction="column"
+              gap="4"
+            >
+              <Flex
+                maxHeight="370px"
+                className="scroller"
+                direction="column"
+                gap="3"
+              >
+                {shoppingCartData.map((product) => (
+                  <Flex key={product.id} direction="column" gap="4" pr="3">
+                    <CardProductSelected product={product} />
+                    <Box className="divider" />
+                  </Flex>
+                ))}
+              </Flex>
+
+              <Flex direction="column" gap="4">
+                <Flex justify="between">
+                  <Text className="color-info">Total de itens</Text>
+                  <Text className="color-info">R$ 29,70</Text>
+                </Flex>
+                <Flex justify="between">
+                  <Text className="color-info">Entrega</Text>
+                  <Text className="color-info">R$ 29,70</Text>
+                </Flex>
+                <Flex justify="between">
+                  <Text size="5" weight="bold" className="color-total">
+                    Total
+                  </Text>
+                  <Text size="5" weight="bold" className="color-total">
+                    R$ 33,20
+                  </Text>
+                </Flex>
+                <Button size="3" variant="soft" className="btn-confirm">
+                  confirmar pedido
+                </Button>
+              </Flex>
+            </Flex>
           </Box>
         </Flex>
       </Box>

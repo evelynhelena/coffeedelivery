@@ -1,0 +1,64 @@
+@import "../../styles/theme/color";
+@import "../../styles/theme/fonts";
+
+.content-card-product-selected{
+
+
+    img{
+        width: 100%;
+        max-width: 64px;
+    }
+
+    .name-product{
+        color: var(--gray-700);
+        font-size: var(--s);
+    }
+    .price-product{
+        font-weight: bold;
+    }
+
+    .btn-more-less{
+        background-color: var(--gray-400);
+        padding: 8px;
+        border-radius: 6px;
+        font-size: var(--s);
+        width: 72px;
+
+        .color-icon{
+          color: var(--purple);
+          cursor: pointer;
+
+          &:hover{
+            color: var(--purple-dark)
+          }
+        }
+
+        .disabled{
+            color: var(--purple);
+            cursor: not-allowed;
+            &:hover{
+                color: var(--purple)
+            }
+        }
+
+      }
+
+      .btn-remove{
+        background-color: var(--gray-400);
+        padding: 8px;
+        border-radius: 6px;
+        font-size: var(--sx);
+        cursor: pointer;
+        color: var(--gray-700);
+
+        .icon-tash{
+            color: var(--purple);
+        }
+
+        &:hover{
+            background-color: var(--gray-500);
+            color: var(--gray-800);
+        }
+
+      }
+}
