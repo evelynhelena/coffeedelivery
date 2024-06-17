@@ -15,7 +15,7 @@ interface CardProductSelectedProps {
 }
 
 export function CardProductSelected({ product }: CardProductSelectedProps) {
-  const [countProduct, setCountProduct] = useState<number>(0)
+  const [countProduct, setCountProduct] = useState<number>(product.count)
 
   return (
     <Box key={product.id} className="content-card-product-selected">
@@ -28,7 +28,7 @@ export function CardProductSelected({ product }: CardProductSelectedProps) {
           <Flex justify="between">
             <Text className="name-product">{product.name}</Text>
             <Text className="price-product">
-              R$ {currencyFormat(product.price)}
+              R$ {currencyFormat(product.price * countProduct)}
             </Text>
           </Flex>
 
