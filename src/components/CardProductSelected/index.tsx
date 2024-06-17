@@ -5,6 +5,7 @@ import { ProductResponseProps } from '../../types/productService'
 import { useState } from 'react'
 import { Minus, Plus, Trash } from 'phosphor-react'
 import './index.scss'
+import { useShoppingCart } from '../../hooks/useShoppingCart'
 
 interface ShoppingCartDataProps extends ProductResponseProps {
   count: number
@@ -15,7 +16,8 @@ interface CardProductSelectedProps {
 }
 
 export function CardProductSelected({ product }: CardProductSelectedProps) {
-  const [countProduct, setCountProduct] = useState<number>(0)
+  const [countProduct, setCountProduct] = useState<number>(product.count)
+  const { removeProductList, editCount } = useShoppingCart()
 
   return (
     <Box key={product.id} className="content-card-product-selected">
@@ -28,7 +30,7 @@ export function CardProductSelected({ product }: CardProductSelectedProps) {
           <Flex justify="between">
             <Text className="name-product">{product.name}</Text>
             <Text className="price-product">
-              R$ {currencyFormat(product.price)}
+              R$ {currencyFormat(product.price * product.count)}
             </Text>
           </Flex>
 
@@ -39,9 +41,10 @@ export function CardProductSelected({ product }: CardProductSelectedProps) {
                   size={16}
                   className={`color-icon ${countProduct === 0 && 'disabled'} `}
                   weight="bold"
-                  onClick={() =>
+                  onClick={() => {
                     countProduct > 0 && setCountProduct(countProduct - 1)
-                  }
+                    editCount(product.id, countProduct - 1)
+                  }}
                 />
                 <Box>
                   <Text>{countProduct}</Text>
@@ -51,11 +54,19 @@ export function CardProductSelected({ product }: CardProductSelectedProps) {
                   size={16}
                   className="color-icon"
                   weight="bold"
-                  onClick={() => setCountProduct(countProduct + 1)}
+                  onClick={() => {
+                    setCountProduct(countProduct + 1)
+                    editCount(product.id, countProduct + 1)
+                  }}
                 />
               </Flex>
 
-              <Flex className="btn-remove" gap="1" align="center">
+              <Flex
+                className="btn-remove"
+                gap="1"
+                align="center"
+                onClick={() => removeProductList(product.id)}
+              >
                 <Trash className="icon-tash" size={16} />
                 <Text>REMOVER</Text>
               </Flex>

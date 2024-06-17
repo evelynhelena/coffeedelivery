@@ -1,30 +1,86 @@
-import { Box, Button, Flex, Text, TextField } from '@radix-ui/themes'
+import { Box, Button, Flex, Spinner, Text, TextField } from '@radix-ui/themes'
 import { Header } from '../../components/Header'
 import './index.scss'
 import {
   Bank,
+  CheckCircle,
   CreditCard,
   CurrencyDollar,
   MapPinLine,
   Money,
 } from 'phosphor-react'
 import { useShoppingCart } from '../../hooks/useShoppingCart'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { CardProductSelected } from '../../components/CardProductSelected'
+import { currencyFormat } from '../../utils/format'
+import { cepService } from '../../services/cep'
+import { Alert } from '../../components/Alert'
 
 export function Shopping() {
   const [paymentTypeSelect, setPaymentTypeSelect] = useState<
     'CREDIT' | 'DEBIT' | 'MONEY' | undefined
   >()
 
-  const { shoppingCartData } = useShoppingCart()
+  const [total, setTotal] = useState<number>(0)
+  const [open, setOpen] = useState<boolean>(false)
+  const [loading, setLoading] = useState<boolean>(false)
 
-  console.log(shoppingCartData)
+  const [cepField, setCepField] = useState<string>('')
+  const [logradouroField, setLogradouroField] = useState<string>('')
+  const [numberField, setNumberField] = useState<string>('')
+  const [complementField, setComplementField] = useState<string>('')
+  const [neighborhoodField, setNeighborhoodField] = useState<string>('')
+  const [cityField, setCityField] = useState<string>('')
+  const [stateField, setStateField] = useState<string>('')
+
+  const { shoppingCartData, getProcentValue, porcentValue } = useShoppingCart()
+
+  const prices = shoppingCartData.map((s) => s.count * s.price)
+
+  useEffect(() => {
+    let sum = 0
+    for (let i = 0; i < prices.length; i++) {
+      sum += prices[i]
+    }
+
+    setTotal(sum)
+  }, [prices, shoppingCartData])
+
+  useEffect(() => {
+    getProcentValue()
+  }, [getProcentValue])
+
+  const handleSearchCep = async (cep: string) => {
+    if (cep.length === 8) {
+      try {
+        setLoading(true)
+        const cepData = await cepService.getCep(cep)
+        setLogradouroField(cepData?.logradouro)
+        setNeighborhoodField(cepData?.bairro)
+        setCityField(cepData?.localidade)
+        setStateField(cepData?.uf)
+      } catch {
+        setOpen(true)
+        setTimeout(() => {
+          setOpen(false)
+        }, 1500)
+      } finally {
+        setLoading(false)
+      }
+    }
+  }
 
   return (
     <>
       <Header />
-      <Box className="mw-1120 content-shopping">
+      {open && (
+        <Alert
+          icon={<CheckCircle size={20} />}
+          title="Erro ao encontrar cep"
+          type="error"
+        />
+      )}
+      <Box className="mw-1120 content-shopping" mb="5">
         <Flex gap="6">
           <Box>
             <Box flexGrow="1">
@@ -55,11 +111,26 @@ export function Shopping() {
                         className="text-field"
                         size="3"
                         placeholder="CEP"
-                      />
+                        value={cepField}
+                        onChange={({ target }) => {
+                          handleSearchCep(target.value)
+                          setCepField(target.value)
+                        }}
+                      >
+                        {loading && (
+                          <TextField.Slot side="right">
+                            <Spinner />
+                          </TextField.Slot>
+                        )}
+                      </TextField.Root>
                       <TextField.Root
                         className="text-field"
                         size="3"
                         placeholder="Rua"
+                        value={logradouroField}
+                        onChange={({ target }) =>
+                          setLogradouroField(target.value)
+                        }
                       />
 
                       <Flex gap="2">
@@ -67,11 +138,19 @@ export function Shopping() {
                           className="smalltext-field text-field"
                           size="3"
                           placeholder="Número"
+                          value={numberField}
+                          onChange={({ target }) =>
+                            setNumberField(target.value)
+                          }
                         />
                         <TextField.Root
                           className="big-text-field text-field"
                           size="3"
                           placeholder="Complemento"
+                          value={complementField}
+                          onChange={({ target }) =>
+                            setComplementField(target.value)
+                          }
                         >
                           <TextField.Slot
                             side="right"
@@ -87,14 +166,22 @@ export function Shopping() {
                           <TextField.Root
                             className="text-field"
                             size="3"
-                            placeholder="Número"
+                            placeholder="Bairro"
+                            value={neighborhoodField}
+                            onChange={({ target }) =>
+                              setNeighborhoodField(target.value)
+                            }
                           />
                         </Box>
                         <Box width="276px">
                           <TextField.Root
                             className="text-field"
                             size="3"
-                            placeholder="Complemento"
+                            placeholder="Cidade"
+                            value={cityField}
+                            onChange={({ target }) =>
+                              setCityField(target.value)
+                            }
                           />
                         </Box>
                         <Box width="60px">
@@ -102,6 +189,10 @@ export function Shopping() {
                             className="text-field"
                             size="3"
                             placeholder="UF"
+                            value={stateField}
+                            onChange={({ target }) =>
+                              setStateField(target.value)
+                            }
                           />
                         </Box>
                       </Flex>
@@ -185,18 +276,21 @@ export function Shopping() {
               <Flex direction="column" gap="4">
                 <Flex justify="between">
                   <Text className="color-info">Total de itens</Text>
-                  <Text className="color-info">R$ 29,70</Text>
+                  <Text className="color-info">{`R$ ${currencyFormat(total)}`}</Text>
                 </Flex>
                 <Flex justify="between">
                   <Text className="color-info">Entrega</Text>
-                  <Text className="color-info">R$ 29,70</Text>
+                  <Text className="color-info">
+                    R$ {`R$ ${currencyFormat((total * porcentValue) / 100)}`}
+                  </Text>
                 </Flex>
                 <Flex justify="between">
                   <Text size="5" weight="bold" className="color-total">
                     Total
                   </Text>
                   <Text size="5" weight="bold" className="color-total">
-                    R$ 33,20
+                    R${' '}
+                    {`R$ ${currencyFormat(total + (total * porcentValue) / 100)}`}
                   </Text>
                 </Flex>
                 <Button size="3" variant="soft" className="btn-confirm">

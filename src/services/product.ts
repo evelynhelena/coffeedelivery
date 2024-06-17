@@ -14,4 +14,10 @@ export const productService = {
     const { data }: ProductByIdResponse = await api.get(`/products/${id}`)
     return data
   },
+
+  getPorcentValue: async function (): Promise<{ porcentValue: number }> {
+    const { data }: { data: { porcentValue: number } } =
+      await api.get(`/porcent`)
+    return data
+  },
 }
