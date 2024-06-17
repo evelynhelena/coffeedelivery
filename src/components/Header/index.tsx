@@ -18,7 +18,7 @@ export function Header() {
   return (
     <Box pt="6" className="header-content mw-1120">
       <Flex justify="between">
-        <Box>
+        <Box onClick={() => navigate('/')} className="box-image">
           <img src={Logo} alt="Logo" />
         </Box>
         <Box>
