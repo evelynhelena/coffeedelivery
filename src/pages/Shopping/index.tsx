@@ -50,6 +50,8 @@ export function Shopping() {
     getProcentValue()
   }, [getProcentValue])
 
+  console.log('teste')
+
   const handleSearchCep = async (cep: string) => {
     if (cep.length === 8) {
       try {
