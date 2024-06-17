@@ -15,6 +15,7 @@ import { CardProductSelected } from '../../components/CardProductSelected'
 import { currencyFormat } from '../../utils/format'
 import { cepService } from '../../services/cep'
 import { Alert } from '../../components/Alert'
+import { EmptyShopping } from '../../components/EmptyShopping'
 
 export function Shopping() {
   const [paymentTypeSelect, setPaymentTypeSelect] = useState<
@@ -259,44 +260,51 @@ export function Shopping() {
               direction="column"
               gap="4"
             >
-              <Flex
-                maxHeight="370px"
-                className="scroller"
-                direction="column"
-                gap="3"
-              >
-                {shoppingCartData.map((product) => (
-                  <Flex key={product.id} direction="column" gap="4" pr="3">
-                    <CardProductSelected product={product} />
-                    <Box className="divider" />
+              {shoppingCartData && shoppingCartData.length > 0 ? (
+                <>
+                  {' '}
+                  <Flex
+                    maxHeight="370px"
+                    className="scroller"
+                    direction="column"
+                    gap="3"
+                  >
+                    {shoppingCartData.map((product) => (
+                      <Flex key={product.id} direction="column" gap="4" pr="3">
+                        <CardProductSelected product={product} />
+                        <Box className="divider" />
+                      </Flex>
+                    ))}
                   </Flex>
-                ))}
-              </Flex>
-
-              <Flex direction="column" gap="4">
-                <Flex justify="between">
-                  <Text className="color-info">Total de itens</Text>
-                  <Text className="color-info">{`R$ ${currencyFormat(total)}`}</Text>
-                </Flex>
-                <Flex justify="between">
-                  <Text className="color-info">Entrega</Text>
-                  <Text className="color-info">
-                    R$ {`R$ ${currencyFormat((total * porcentValue) / 100)}`}
-                  </Text>
-                </Flex>
-                <Flex justify="between">
-                  <Text size="5" weight="bold" className="color-total">
-                    Total
-                  </Text>
-                  <Text size="5" weight="bold" className="color-total">
-                    R${' '}
-                    {`R$ ${currencyFormat(total + (total * porcentValue) / 100)}`}
-                  </Text>
-                </Flex>
-                <Button size="3" variant="soft" className="btn-confirm">
-                  confirmar pedido
-                </Button>
-              </Flex>
+                  <Flex direction="column" gap="4">
+                    <Flex justify="between">
+                      <Text className="color-info">Total de itens</Text>
+                      <Text className="color-info">{`R$ ${currencyFormat(total)}`}</Text>
+                    </Flex>
+                    <Flex justify="between">
+                      <Text className="color-info">Entrega</Text>
+                      <Text className="color-info">
+                        R${' '}
+                        {`R$ ${currencyFormat((total * porcentValue) / 100)}`}
+                      </Text>
+                    </Flex>
+                    <Flex justify="between">
+                      <Text size="5" weight="bold" className="color-total">
+                        Total
+                      </Text>
+                      <Text size="5" weight="bold" className="color-total">
+                        R${' '}
+                        {`R$ ${currencyFormat(total + (total * porcentValue) / 100)}`}
+                      </Text>
+                    </Flex>
+                    <Button size="3" variant="soft" className="btn-confirm">
+                      confirmar pedido
+                    </Button>
+                  </Flex>
+                </>
+              ) : (
+                <EmptyShopping />
+              )}
             </Flex>
           </Box>
         </Flex>
