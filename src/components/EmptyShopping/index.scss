@@ -1,0 +1,10 @@
+@import "../../styles/theme/color";
+.empty-shopping-content{
+    .icon{
+        color: var(--purple-dark)
+    }
+
+    span{
+        color: var(--gray-650) ;
+    }
+}
