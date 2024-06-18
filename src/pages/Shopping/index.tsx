@@ -16,6 +16,7 @@ import { currencyFormat } from '../../utils/format'
 import { cepService } from '../../services/cep'
 import { Alert } from '../../components/Alert'
 import { EmptyShopping } from '../../components/EmptyShopping'
+import { useNavigate } from 'react-router-dom'
 
 export function Shopping() {
   const [paymentTypeSelect, setPaymentTypeSelect] = useState<
@@ -28,6 +29,7 @@ export function Shopping() {
 
   const [cepField, setCepField] = useState<string>('')
   const [logradouroField, setLogradouroField] = useState<string>('')
+
   const [numberField, setNumberField] = useState<string>('')
   const [complementField, setComplementField] = useState<string>('')
   const [neighborhoodField, setNeighborhoodField] = useState<string>('')
@@ -37,6 +39,7 @@ export function Shopping() {
   const { shoppingCartData, getProcentValue, porcentValue } = useShoppingCart()
 
   const prices = shoppingCartData.map((s) => s.count * s.price)
+  const navigate = useNavigate()
 
   useEffect(() => {
     let sum = 0
@@ -81,7 +84,7 @@ export function Shopping() {
           type="error"
         />
       )}
-      <Box className="mw-1120 content-shopping" mb="5">
+      <Box className="mw-1120 content-shopping" mb="5" mt="9">
         <Flex gap="6">
           <Box>
             <Box flexGrow="1">
@@ -297,7 +300,12 @@ export function Shopping() {
                         {`R$ ${currencyFormat(total + (total * porcentValue) / 100)}`}
                       </Text>
                     </Flex>
-                    <Button size="3" variant="soft" className="btn-confirm">
+                    <Button
+                      size="3"
+                      variant="soft"
+                      className="btn-confirm"
+                      onClick={() => navigate('/end-page')}
+                    >
                       confirmar pedido
                     </Button>
                   </Flex>
