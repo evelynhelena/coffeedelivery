@@ -1,0 +1,66 @@
+@import "../../styles/theme/color";
+@import "../../styles/theme/fonts";
+
+.content-end-page {
+    .title {
+        color: var(--yellow-dark);
+    }
+
+    .subtitle {
+        color: var(--gray-700);
+    }
+
+    .box-info-send {
+        .gap-100{
+            gap: 100px
+        }
+        .border-linear {
+            
+            position: relative;
+
+            &::before {
+                content: "";
+                position: absolute;
+                inset: 0;
+                border-top-left-radius: 8px;
+                border-top-right-radius: 50px;
+                border-bottom-left-radius: 50px;
+                border-bottom-right-radius: 8px;
+                padding: 1px;
+                /* control the border thickness */
+                background: linear-gradient(45deg, red, blue);
+                -webkit-mask:
+                    linear-gradient(#fff 0 0) content-box,
+                    linear-gradient(#fff 0 0);
+                -webkit-mask-composite: xor;
+                mask-composite: exclude;
+                pointer-events: none;
+            }
+
+            padding: 40px 111px 40px 40px;
+
+            .text-info {
+                color: var(--green-650)
+            }
+
+            .cicle-icon {
+                border-radius: 50%;
+                color: var(--white);
+            }
+
+            .pourple {
+                background-color: var(--purple);
+            }
+
+            .yellow {
+                background-color: var(--yellow);
+            }
+
+            .yellow-dark {
+                background-color: var(--yellow-dark);
+            }
+        }
+
+
+    }
+}
