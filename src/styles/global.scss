@@ -12,11 +12,6 @@ body {
   --webkit-font-smothing: antialiased;
 }
 
-:focus {
-  outline: 0;
-  box-sizing: 0 0 0 2px var(--yellow-dark);
-}
-
 body,
 input,
 button,
