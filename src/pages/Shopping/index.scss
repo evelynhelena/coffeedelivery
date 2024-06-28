@@ -47,6 +47,13 @@
             .rt-TextFieldRoot:where(.rt-variant-surface){
                 --text-field-focus-color: var(--yellow-dark)
             }
+
+            .error-message{
+                color: var(--red-300);
+                display: block;
+                margin-top: 5px;
+                font-size: var(--sx)
+            }
         }
         
     }
@@ -130,6 +137,16 @@
 
             &:hover{
                 background-color: var(--yellow-dark)
+            }
+            &:disabled{
+                opacity: 0.5;
+                cursor: not-allowed;
+            }
+            &:where(disabled):active{
+                pointer-events: none;
+            }
+            &:where(disabled):hover{ // Isso precisa ser arrumado
+                pointer-events: none !important;
             }
         }
 
