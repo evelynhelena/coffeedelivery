@@ -19,6 +19,7 @@ interface ShoppingCartData {
   removeProductList: (id: number) => void
   editCount: (id: number, count: number) => void
   getProcentValue: () => void
+  setShoppingCartData: (value: ShoppingCartDataProps[]) => void
 }
 
 export const ShoppingCartContext = createContext<ShoppingCartData>(
@@ -106,6 +107,7 @@ export function ShoppingCartProvider({ children }: ShoppingCartProps) {
         editCount,
         getProcentValue,
         porcentValue,
+        setShoppingCartData,
       }}
     >
       {children}
