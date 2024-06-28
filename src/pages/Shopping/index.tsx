@@ -16,10 +16,13 @@ import { currencyFormat } from '../../utils/format'
 import { cepService } from '../../services/cep'
 import { Alert } from '../../components/Alert'
 import { EmptyShopping } from '../../components/EmptyShopping'
-// import { useNavigate } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 import * as yup from 'yup'
 import { SubmitHandler, useForm } from 'react-hook-form'
 import { yupResolver } from '@hookform/resolvers/yup'
+import { shoppingService } from '../../services/shopping'
+import { ShoppingDataProps } from '../../types/shoppingService'
+import axios from 'axios'
 
 type FormDataPros = {
   cepField: string
@@ -39,8 +42,13 @@ export function Shopping() {
   const [total, setTotal] = useState<number>(0)
   const [open, setOpen] = useState<boolean>(false)
   const [loading, setLoading] = useState<boolean>(false)
-
   const [, setCepField] = useState<string>('')
+  const [typeError, setTypeErros] = useState<string>('')
+
+  const { shoppingCartData, getProcentValue, porcentValue } = useShoppingCart()
+
+  const prices = shoppingCartData.map((s) => s.count * s.price)
+  const navigate = useNavigate()
 
   const erroMessage = 'Campo obrigatório'
 
@@ -81,13 +89,46 @@ export function Shopping() {
   const handleShopping: SubmitHandler<FormDataPros> = async (data) => {
     await new Promise((resolve) => setTimeout(resolve, 2000))
 
-    console.log(data)
+    const dataShopping: ShoppingDataProps = {
+      id: '1',
+      adress: data,
+      shoppingCartData,
+      paymentType: paymentTypeSelect || '',
+    }
+
+    try {
+      const data = await shoppingService.getBuyById(dataShopping.id)
+      if (data.id) {
+        try {
+          await shoppingService.updatedBuy(dataShopping)
+          navigate('/end-page')
+        } catch {
+          setTypeErros('Erro realizar a compra')
+          setOpen(true)
+          setTimeout(() => {
+            setOpen(false)
+          }, 1500)
+        }
+      }
+    } catch (e) {
+      if (axios.isAxiosError(e)) {
+        if (e.response?.status === 404) {
+          try {
+            await shoppingService.createBuy(dataShopping)
+            navigate('/end-page')
+          } catch {
+            setTypeErros('Erro realizar a compra')
+            setOpen(true)
+            setTimeout(() => {
+              setOpen(false)
+            }, 1500)
+          }
+        }
+      } else {
+        setTypeErros('Erro inesperado')
+      }
+    }
   }
-
-  const { shoppingCartData, getProcentValue, porcentValue } = useShoppingCart()
-
-  const prices = shoppingCartData.map((s) => s.count * s.price)
-  // const navigate = useNavigate()
 
   useEffect(() => {
     let sum = 0
@@ -120,6 +161,7 @@ export function Shopping() {
 
         clearErrorsFields()
       } catch {
+        setTypeErros('Erro ao encontrar cep')
         setOpen(true)
         setTimeout(() => {
           setOpen(false)
@@ -136,7 +178,7 @@ export function Shopping() {
       {open && (
         <Alert
           icon={<CheckCircle size={20} />}
-          title="Erro ao encontrar cep"
+          title={typeError}
           type="error"
         />
       )}
@@ -390,7 +432,7 @@ export function Shopping() {
                         variant="soft"
                         className="btn-confirm"
                         type="submit"
-                        disabled={formState.isSubmitting}
+                        disabled={formState.isSubmitting || !paymentTypeSelect}
                       >
                         {formState.isSubmitting ? (
                           <Spinner />
